@@ -30,7 +30,7 @@ jobs:
       - name: Install buildozer
         run: |
           pip install --upgrade pip setuptools wheel
-          pip install buildozer
+          pip install "buildozer==1.5.0"
           pip install "cython<3.0"
 
       - name: Build APK with Buildozer
