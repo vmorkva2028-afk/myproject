@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -22,12 +22,16 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk \
-            autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
-            libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev
+            autoconf automake libtool libtool-bin pkg-config \
+            zlib1g-dev libncurses5-dev libncursesw5-dev \
+            libtinfo6 cmake libffi-dev libssl-dev \
+            build-essential ccache
 
       - name: Install buildozer
         run: |
-          pip install buildozer cython
+          pip install --upgrade pip setuptools wheel
+          pip install buildozer
+          pip install "cython<3.0"
 
       - name: Build APK with Buildozer
         run: |
